@@ -31,3 +31,29 @@ var calculatePrice = function (userType, productType, price, publishedDate) {
 	}
 	return 0;
 }
+
+	
+function findRebateAmount(userType, productType, publishedDate) {
+
+	var rebateValue = 0;
+
+	if(userType === 1) {
+		rebateValue += 5;
+	}
+
+	if(productType === 0 && isPublishedToday(publishedDate)) {
+		rebateValue += 10;
+	}
+
+	return rebateValue;
+};
+
+
+function isPublishedToday(publishedDate) {
+	return publishedDate.toDateString() === new Date().toDateString();
+}
+
+
+function findProductTypePrice(productType) {
+	return { 0: 25, 1: 35}[productType]
+}
